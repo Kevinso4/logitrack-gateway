@@ -5,10 +5,10 @@ name: CI-CD gateway
 on:
   push:
     branches: [main]
-    paths: ["services/gateway/**", "services/common/**", "services/requirements.txt", "services/Dockerfile", ".github/workflows/gateway.yml"]
+    paths: ["gateway/**", "common/**", "requirements.txt", "Dockerfile", ".github/workflows/deploy.yml"]
   pull_request:
     branches: [main]
-    paths: ["services/gateway/**", "services/common/**", "services/requirements.txt", "services/Dockerfile"]
+    paths: ["gateway/**", "common/**", "requirements.txt", "Dockerfile"]
   workflow_dispatch:
 
 permissions:
@@ -20,9 +20,9 @@ jobs:
     uses: Kevinso4/logitrack-pipelines/.github/workflows/ci.yml@main
     with:
       service-name: gateway
-      directorio: services
-      imagen: ghcr.io/kevinso4/tracklogi-gateway
-      desplegar: false
+      directorio: "."
+      imagen: ghcr.io/kevinso4/logitrack-gateway
+      desplegar: true
       url: https://tracklogi-gateway.onrender.com
       render-service-id: srv-daqqg449v7es73fo8o10
     secrets: inherit
